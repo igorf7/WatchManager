@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>text/manual.txt</file>
+        <file>images/wireless.ico</file>
+        <file>images/wireless.png</file>
+    </qresource>
+</RCC>
