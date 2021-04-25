@@ -1,5 +1,5 @@
 # WatchManager
-A program for working with a proprietary weather station via a radio interface.
+Version 1.0.1
 ## Discription
-## Installing
-## Using
+A program for interacting with my own weather station by radio.
+A special device is required for operation by radio.
