@@ -1,6 +1,5 @@
 #include "packethandler.h"
 #include "mainwindow.h"
-#include "emulviewer.h"
 #include "comport.h"
 
 #include <QMessageBox>

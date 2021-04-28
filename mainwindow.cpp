@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 
 #include "watchviewer.h"
-#include "messviewer.h"
 #include "monitorviewer.h"
 
 #include <QThread>
