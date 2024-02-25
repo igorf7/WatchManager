@@ -9,3 +9,6 @@ Related projects:
 Remote_F23x0,
 Sensor_BME280_F23x0,
 Watch401.
+
+## Note
+The project is still in development
