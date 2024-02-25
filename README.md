@@ -6,7 +6,6 @@ A special device is required for interaction.
 The device is built on an MSP430F2350 microcontroller and an SX1211 radio transceiver.
 
 Related projects:
-Remote,
-Sensor,
-Sniffer,
-Watch.
+Remote_F23x0,
+Sensor_BME280_F23x0,
+Watch401.
