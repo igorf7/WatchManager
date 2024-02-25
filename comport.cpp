@@ -34,26 +34,25 @@ void ComPort:: onPortStart()
  * @brief Opens and configures the port
  * @param port - port name
  */
-void ComPort:: onConnectClicked(const QString &port)
+void ComPort:: onConnectClicked(const QString &port, int br)
 {
     serialPort.setPortName(port);
     if (!serialPort.isOpen()) {
         if (!serialPort.open(QIODevice::ReadWrite)) {
             if (!QSerialPortInfo::availablePorts().isEmpty())
-                emit portOpenError(tr("Порт не доступен. Возможно он занят другим приложением."));
+                emit portError(tr("Port not available."));
         }
         else {
-            serialPort.setBaudRate(QSerialPort::Baud115200);
+            serialPort.setBaudRate(br);
             serialPort.setDataBits(QSerialPort::Data8);
             serialPort.setStopBits(QSerialPort::OneStop);
             serialPort.setParity(QSerialPort::NoParity);
             serialPort.setFlowControl(QSerialPort::NoFlowControl);
-            qDebug() << "Port opened" << serialPort.portName();
             emit portOpened(port);
         }
     }
     else {
-        emit portOpenError(tr("Этот порт уже открыт."));
+        emit portError(tr("This port already opened."));
     }
 }
 
@@ -64,7 +63,6 @@ void ComPort::onDisconnectClicked()
 {
     if (serialPort.isOpen()) {
         serialPort.close();
-        qDebug() << "Port closed" << serialPort.portName();
         emit portClosed();
     }
 }
@@ -96,10 +94,9 @@ void ComPort::onReadyRead()
 void ComPort::onSendDataPacket(const QByteArray &packet)
 {   
     if (!serialPort.isOpen()) {
-        emit portSendError(tr("Нет соединения"));
+        emit portError(tr("Device not connected"));
     }
     else {
         serialPort.write(packet);
     }
 }
-//eof

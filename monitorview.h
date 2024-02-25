@@ -1,33 +1,29 @@
-#ifndef MONITORVIEWER_H
-#define MONITORVIEWER_H
+#ifndef MONITORVIEW_H
+#define MONITORVIEW_H
 #include "mainwindow.h"
 
 #include <QObject>
 #include <QLCDNumber>
-
-/* Parameters structure */
-typedef struct
-{
-    float temperature,
-           pressure,
-           hummidity;
-}Params_t;
+#include <QDate>
+#include <QFile>
+#include <QDir>
 
 /**
  * @brief Class constructor
  * @param parent
  */
-class MonitorViewer : public QObject
+class MonitorView : public QObject
 {
     Q_OBJECT
 public:
-    explicit MonitorViewer(QObject *parent = nullptr);
-    ~MonitorViewer();
+    explicit MonitorView(QObject *parent = nullptr);
+    ~MonitorView();
 
     QWidget *monitorWidget = nullptr;
 
 signals:
-    void createAndSend(PacketType_t pt, QByteArray &payload);
+    void createAndSend(TPacketType pt, QByteArray &payload);
+    void writeStatusBar(const QString &str);
 
 public slots:
     void onShowParams(const QByteArray &packet);
@@ -42,10 +38,16 @@ private:
     QLCDNumber *rssiLcd[sensNum];
 
     tabsEnum_t myTabIndex = MONITOR;
+    QFile csvFile;
+    QString csvDir;
+    QString filename;
+    char sep = ',';
 
     void sendResetCmd();
+    void createCsvFile();
+    void getFileName(quint16 n, QString &fname);
 
 private slots:
 };
 
-#endif // MONITORVIEWER_H
+#endif // MONITORVIEW_H

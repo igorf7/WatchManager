@@ -5,10 +5,10 @@
 
 /* Device types */
 typedef enum{
-    METEO_WATCH_TYPE = (uint8_t)9,
+    METEO_WATCH_TYPE = (quint8)9,
     RF_BME280_TYPE,
     RF_REMOTE_TYPE
-}DevType_t;
+}TDeviceType;
 
 typedef enum  { /* Packet types */
     BME280_PACKET = static_cast<char>(1),
@@ -16,7 +16,7 @@ typedef enum  { /* Packet types */
     ACK_PACKET,
     DIA_PACKET,
     CONNECT
-}PacketType_t;
+}TPacketType;
 
 /* Cmd code */
 typedef enum{
@@ -30,7 +30,7 @@ typedef enum{
     SET_RECEIVE,
     SET_SLEEP,
     RESET_CMD
-}CmdCode_t;
+}TCmdCode;
 
 /* Packet header structure */
 #pragma pack(push, 1)
@@ -39,16 +39,16 @@ typedef struct
     quint16 dst_addr,
             snd_addr;
     quint8 type;
-} RF_Header_t;
+} TRFHeader;
 #pragma pack(pop)
 
 /* Packet structure */
 #pragma pack(push, 1)
 typedef struct
 {
-    RF_Header_t header;
+    TRFHeader header;
     quint8 data[64];
-} RF_Packet_t;
+} TRFPacket;
 #pragma pack(pop)
 
 #pragma pack(push, 1)
@@ -57,7 +57,7 @@ typedef struct {
           pressure,
           humidity;
     qint8 rssi;
-} Parameter_t;
+} TParameter;
 #pragma pack(pop)
 
 class PacketHandler : public QObject
@@ -69,12 +69,12 @@ public:
 
 signals:
     void sendDataPacket(const QByteArray &packet);
-    void connectionEstablished(quint16 id);
     void showParams(const QByteArray &packet);
     void confirmCmd(quint8 cmd);
+    void connectionEstablished(quint16 id);
 
 public slots:
-    void onCreateAndSend(PacketType_t pt, QByteArray &payload);
+    void onCreateAndSend(TPacketType pt, QByteArray &payload);
     void onParsingPacket(const QByteArray &packet);
 };
 

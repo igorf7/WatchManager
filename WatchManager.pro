@@ -22,18 +22,18 @@ SOURCES += \
     comport.cpp \
     main.cpp \
     mainwindow.cpp \
-    monitorviewer.cpp \
+    monitorview.cpp \
     packethandler.cpp \
-    remoteviewer.cpp \
-    watchviewer.cpp
+    remoteview.cpp \
+    watchview.cpp
 
 HEADERS += \
     comport.h \
     mainwindow.h \
-    monitorviewer.h \
+    monitorview.h \
     packethandler.h \
-    remoteviewer.h \
-    watchviewer.h
+    remoteview.h \
+    watchview.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

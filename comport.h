@@ -15,8 +15,7 @@ public:
     QSerialPort serialPort;
 
 signals:
-    void portOpenError(const QString &msg);
-    void portSendError(const QString &msg);
+    void portError(const QString &msg);
     void quitComPort();
     void portOpened(const QString &port);
     void portClosed();
@@ -25,7 +24,7 @@ signals:
 public slots:
     void onPortStart();
     void onDisconnectClicked();
-    void onConnectClicked(const QString &port);
+    void onConnectClicked(const QString &port, int br);
     void onSendDataPacket(const QByteArray &packet);
 
 private slots:

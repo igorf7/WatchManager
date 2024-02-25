@@ -1,5 +1,5 @@
-#ifndef WATCHVIEWER_H
-#define WATCHVIEWER_H
+#ifndef WATCHVIEW_H
+#define WATCHVIEW_H
 
 #include "mainwindow.h"
 
@@ -7,12 +7,12 @@
 #include <QGroupBox>
 #include <QLCDNumber>
 
-class WatchViewer : public QObject
+class WatchView : public QObject
 {
     Q_OBJECT
 public:
-    explicit WatchViewer(QObject *parent = nullptr);
-    ~WatchViewer();
+    explicit WatchView(QObject *parent = nullptr);
+    ~WatchView();
 
     QWidget* watchWidget = nullptr;
 
@@ -30,11 +30,11 @@ protected:
     void timerEvent(QTimerEvent *event);
 
 signals:
-    void createAndSend(PacketType_t pt, QByteArray &payload);
+    void createAndSend(TPacketType pt, QByteArray &payload);
 
 private slots:
-    void onAutoSetButton_clicked();
+    void onAutoSetButtonClicked();
     void onCurrentChanged(int index);
 };
 
-#endif // WATCHVIEWER_H
+#endif // WATCHVIEW_H

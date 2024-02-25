@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include "packethandler.h"
 #include "comport.h"
-#include "remoteviewer.h"
+#include "remoteview.h"
 #include <QMainWindow>
 #include <QComboBox>
 #include <QLineEdit>
@@ -28,32 +28,28 @@ public:
         return deviceAddress;
     }
 
-    static bool getBeeperStatus()
-    {
-        return beeperStatus;
-    }
-
 signals:
-    void connectClicked(const QString &port);
+    void connectClicked(const QString &port, int br);
     void disconnectClicked();
     void sendDataPacket(const QByteArray &packet);
-    void createAndSend(PacketType_t pt, QByteArray &payload);
+    void createAndSend(TPacketType pt, QByteArray &payload);
 
 public slots:
-    void onPortOpenError(const QString &msg);
-    void onPortSendError(const QString &msg);
+    void onPortError(const QString &msg);
     void onPortOpened(const QString &port);
     void onPortClosed();
-    void onWriteStatusBar(const QString &str, int timeout);
+    void onWriteStatusBar(const QString &str);
     void onConnectionEstablished(quint16 id);
 
 protected:
     qint32 connTimeout;
-    int portNumber;
+    //int portNumber;
     void timerEvent(QTimerEvent *event);
 
 private:
     QTabWidget *mainTabWidget;
+    QComboBox *portComboBox;
+    QComboBox *brComboBox;
     QPushButton *connPushButton = nullptr;
     QList<QString> portList;
     QThread *threadPort = nullptr;
@@ -63,17 +59,11 @@ private:
     PacketHandler *packHandler;
 
     bool isPortOpened = false;
-    bool isConnected = false;
-    static bool beeperStatus;
 
     void updatePortList();
 
 private slots:
-    void onConnPushButton_clicked();
-    void onQuit_triggered();
-    void onManual_triggered();
-    void onAbout_triggered();
-    void onBeep_triggered(bool state);
-    void onAddressEdited(const QString &text);
+    void onConnPushButtonClicked();
+    void onBrChanged(int index);
 };
 #endif // MAINWINDOW_H
