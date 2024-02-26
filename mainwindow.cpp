@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     /* Setup left panel group widgets */
     QWidget* leftPanel = new QGroupBox(mainWidget);
     leftPanel->setFixedWidth(180);
-    QLabel *connLabel = new QLabel("<H3>Sniffer connection</H3>");
+    QLabel *connLabel = new QLabel("<H3>Device connection</H3>");
     connLabel->setStyleSheet("color: rgb(136, 136, 136);"
                                  "background-color: rgb(230, 235, 220)");
     QStringList brList;
@@ -236,7 +236,7 @@ void MainWindow::onConnectionEstablished(quint16 id)
     if (connTimeout != 0) {
         this->killTimer(connTimeout);
     }
-    statusBar()->showMessage("Sniffer connected" + portName);
+    statusBar()->showMessage("Device connected" + portName);
     qDebug() << "Device connected 0x" + QString::number(id, 16).toUpper();
 }
 
@@ -250,7 +250,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
         this->killTimer(connTimeout);
         connTimeout = 0;
         emit disconnectClicked();
-        QMessageBox::warning(this, tr("Connection"), "Sniffer not found.");
+        QMessageBox::warning(this, tr("Connection"), "Device not found.");
     }
 }
 

@@ -178,7 +178,7 @@ void MonitorView::onConfirmCmd(quint8 cmd)
     switch (cmd)
     {
     case SET_RECEIVE:
-        emit writeStatusBar("Sniffer in receive mode");
+        emit writeStatusBar("Device in receive mode");
         break;
     case SET_SLEEP:
         for (int i = 0; i <sensNum; i++) {
@@ -187,7 +187,7 @@ void MonitorView::onConfirmCmd(quint8 cmd)
             hummLcd[i]->display(0);
             rssiLcd[i]->display(0);
         }
-        emit writeStatusBar("Sniffer in sleep mode");
+        emit writeStatusBar("Device in sleep mode");
         break;
     default:
         break;

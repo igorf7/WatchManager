@@ -46,8 +46,6 @@ private:
     void sendResetCmd();
     void createCsvFile();
     void getFileName(quint16 n, QString &fname);
-
-private slots:
 };
 
 #endif // MONITORVIEW_H
