@@ -45,7 +45,7 @@ private:
 
     void sendResetCmd();
     void createCsvFile();
-    void getFileName(quint16 n, QString &fname);
+    void writeFileName(quint16 n, QString &fname);
 };
 
 #endif // MONITORVIEW_H

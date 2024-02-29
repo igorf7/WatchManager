@@ -108,7 +108,7 @@ void MonitorView::onShowParams(const QByteArray &packet)
     hummLcd[n]->display(h_normalized);
     rssiLcd[n]->display(prm.rssi);
 
-    getFileName(n, filename);
+    writeFileName(n, filename);
 
     csvFile.setFileName(filename);
 
@@ -160,10 +160,10 @@ void MonitorView::createCsvFile()
 }
 
 /**
- * @brief MainWindow::getFileName
+ * @brief MainWindow::writeFileName
  * @param fname
  */
-void MonitorView::getFileName(quint16 n, QString &fname)
+void MonitorView::writeFileName(quint16 n, QString &fname)
 {
     fname = (csvDir + "/sensor" + QString::number(n) +
             QDate::currentDate().toString("_yyyyMMdd").append(".csv"));
