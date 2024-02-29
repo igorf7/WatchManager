@@ -120,7 +120,7 @@ void MonitorView::onShowParams(const QByteArray &packet)
         ts.setDevice(&csvFile);
         ts << QDate::currentDate().toString("yyyy.MM.dd") << sep
            << QTime::currentTime().toString("hh:mm:ss") << sep
-           << t_normalized << sep << p_normalized<< sep << h_normalized
+           << t_normalized << sep << p_normalized << sep << h_normalized
            << sep << Qt::endl;
         csvFile.close();
     }
