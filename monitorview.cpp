@@ -153,7 +153,7 @@ void MonitorView::createCsvFile()
         /* Write header */
         QTextStream ts(&csvFile);
         ts.setDevice(&csvFile);
-        ts << "Date" << sep << "Time" << sep
+        ts << "sep=" << sep << Qt::endl << "Date" << sep << "Time" << sep
            << "Temperature" << sep << "Pressure" << sep << "Humidity" << sep << Qt::endl;
         csvFile.close();
     }
